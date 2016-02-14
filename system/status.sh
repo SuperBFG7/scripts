@@ -4,6 +4,9 @@
 
 header "System Status" off
 systemctl status --no-pager
+echo ""
+header "Docker Container Status" off
+docker ps
 
 header "Failed Services"
 systemctl --failed --no-pager
