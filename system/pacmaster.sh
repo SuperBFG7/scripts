@@ -2,6 +2,10 @@
 
 pacmatic $@
 
+if [ "$1" != "-Syu" ]; then
+	exit 0
+fi
+
 echo
 echo "checking AUR updates..."
 . /etc/makepkg.conf
