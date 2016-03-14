@@ -6,8 +6,7 @@ if [ "$1" != "-Syu" ]; then
 	exit 0
 fi
 
-echo
-echo "checking AUR updates..."
+header "checking AUR updates..."
 . /etc/makepkg.conf
 repo="custom"
 /usr/bin/pacman -Slp $repo | awk '{print $2}' | sort | \

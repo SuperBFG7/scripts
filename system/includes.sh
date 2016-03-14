@@ -6,7 +6,7 @@ function pause() {
 }
 
 function header() {
-	if [ -z "$2" ]; then
+	if [ ! -z "$2" ]; then
 		pause
 	fi
 	echo "------------------------------------------------------------------------------"

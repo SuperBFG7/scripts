@@ -2,14 +2,14 @@
 
 . `dirname "$0"`/includes.sh
 
-header "removing unused orphan packages" off
+header "removing unused orphan packages"
 pacman -Rns $(/usr/bin/pacman -Qtdq)
 
-header "cleaning package cache: old versions" off
+header "cleaning package cache: old versions"
 paccache -r
 
-header "cleaning package cache: uninstalled packages" off
+header "cleaning package cache: uninstalled packages"
 paccache -ruk0
 
-header "optimizing package DB" off
+header "optimizing package DB"
 pacman-optimize
