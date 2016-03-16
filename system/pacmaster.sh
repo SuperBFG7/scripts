@@ -6,6 +6,8 @@ if [ "$1" != "-Syu" ]; then
 	exit 0
 fi
 
+. `dirname "$0"`/includes.sh
+
 header "checking AUR updates..."
 . /etc/makepkg.conf
 repo="custom"
