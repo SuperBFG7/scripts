@@ -2,12 +2,14 @@
 
 . `dirname "$0"`/includes.sh
 
-beets ()
+beets_modify ()
 {
 	while read i; do
-		echo "beet modify new! $i"
-		echo "beet move $i"
+		artist="`echo $i | artist`"
+		album="`echo $i | album`"
+		echo "beet modify new! artist:\"$artist\" album:\"$album\""
+		echo "beet move artist:\"$artist\" album:\"$album\""
 	done
 }
 
-album_playlist $@ | beets
+album_playlist $@ | beets_modify

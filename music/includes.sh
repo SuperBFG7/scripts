@@ -8,6 +8,15 @@ album_playlist ()
 		limit="1"
 	fi
 
-	mpc playlist -f "artist:'%artist%' album:'%album%'" | uniq | head -n $limit
+	mpc playlist -f 'artist:"%artist%" album:"%album%"' | uniq | head -n $limit
 }
 
+artist ()
+{
+	sed -e 's/.*artist:"//' -e 's/".*//'
+}
+
+album ()
+{
+	sed -e 's/.*album:"//' -e 's/".*//'
+}
