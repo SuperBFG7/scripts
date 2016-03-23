@@ -25,9 +25,9 @@ delete ()
 album_playlist $@ | beets_delete
 
 
-header "THE FOLLOWING FILES WILL BE DELETED"
-album_playlist $@ | delete "ls -l"
-header "REALLY DELETE THESE FILES? (Y, n)"
+header "THE FOLLOWING FILES WILL BE DELETED" > /dev/stderr
+album_playlist $@ | delete "ls -l" > /dev/stderr
+header "REALLY DELETE THESE FILES? (Y, n)" > /dev/stderr
 read i
 i=${i:-y}
 if [ "$i" != "y" ]; then
