@@ -2,8 +2,8 @@
 
 . `dirname "$0"`/includes.sh
 
-args="srcdir destdir [size]\
-	  (default size is 1920x1080)"
+args="srcdir destdir [size]\n \
+\t	  (default size is 1920x1080)"
 
 # check arguments
 check_arg "$1" "$args" "no source directory specified"

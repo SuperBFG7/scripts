@@ -4,7 +4,7 @@ TARGET  = /usr/local/bin/
 
 .PHONY: $(MODULES)
 
-all: $(MODULES)
+all: clean $(MODULES)
 
 select:
 	select i in all $(MODULES); do \
