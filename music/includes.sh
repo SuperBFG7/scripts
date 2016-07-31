@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# get artist and album from mpd playlist
 album_playlist ()
 {
 	if [ ! -z "$1" ]; then
@@ -11,11 +12,13 @@ album_playlist ()
 	mpc playlist -f 'artist:"%artist%" album:"%album%"' | uniq | head -n $limit
 }
 
+# get artist
 artist ()
 {
 	sed -e 's/.*artist:"//' -e 's/".*//'
 }
 
+# get album
 album ()
 {
 	sed -e 's/.*album:"//' -e 's/".*//'
