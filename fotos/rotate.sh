@@ -12,7 +12,7 @@ SIZE="800x800"
 # basic assignments
 DIR="$1"
 
-ls "$ORIG/" | grep -iE "jpe?g$" | while read img; do
+for img in `ls "$DIR/" | grep -iE "jpe?g$"`; do
 	action="0"
 
 	echo $img" ..."
