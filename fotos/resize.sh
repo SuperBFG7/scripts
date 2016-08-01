@@ -31,3 +31,7 @@ ls "$ORIG/" | grep -iE "jpe?g$" | while read img; do
 	# remove EXIF thumbnail and add original filename as JPEG comment
 	jhead -dt -cl "$img" "$DEST/$img"
 done
+
+# manually remove bad images
+echo "use CTRL+DELETE to remove images (WARNING: no confirmation)"
+feh -d -g "800x800" "$DEST/"
