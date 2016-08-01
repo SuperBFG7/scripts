@@ -62,3 +62,4 @@ done
 
 # terminate display program
 kill -TERM `ps -fT | grep display | grep rotate | awk '{print $2}'`
+rm -f "$DIR/rotate.jpg"
