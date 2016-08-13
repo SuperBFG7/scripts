@@ -1,4 +1,4 @@
-MODULES = fotos music pi system
+MODULES = backup fotos music pi system
 .DEFAULT_GOAL = select
 TARGET  = /usr/local/bin/
 
