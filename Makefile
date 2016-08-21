@@ -13,7 +13,7 @@ select:
 	done 
 
 includes.sh:
-	cat */includes.sh > includes.sh
+	cat */includes.sh | grep -v "#STRIP#" > includes.sh
 	cp -iu includes.sh $(TARGET)
 
 clean:

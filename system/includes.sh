@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. `git rev-parse --show-toplevel`/includes.sh	#STRIP#
+
 # pause and wait for keypress
 function pause() {
 	echo "press <ENTER> to continue"

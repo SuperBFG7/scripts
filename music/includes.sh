@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. `git rev-parse --show-toplevel`/includes.sh	#STRIP#
+
 # get artist and album from mpd playlist
 album_playlist ()
 {

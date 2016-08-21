@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. `git rev-parse --show-toplevel`/includes.sh	#STRIP#
+
 # exit with a message
 die() {
 	cat <<-EOF
