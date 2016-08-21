@@ -22,3 +22,8 @@ clean:
 $(MODULES): includes.sh
 	cp -iu $@/*.sh $(TARGET)
 #	$(MAKE) -C $@
+
+uninstall:
+	ls */*.sh | while read i; do \
+		rm "$(TARGET)"`basename $$i`; \
+	done
