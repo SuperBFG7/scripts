@@ -4,4 +4,8 @@
 
 setup_backup
 
-backup "fotos/" $@
+backup "fotos/Hochzeit/" $@
+backup "fotos/jpg/" $@
+backup "fotos/raw/" $@
+backup "fotos/tif/" $@
+backup "fotos/TODO/" $@
