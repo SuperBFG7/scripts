@@ -13,7 +13,7 @@ FILTER="$2"
 
 mkdir -p "$ORIG/_filtered"
 
-ls "$ORIG/" | grep -iE "jpg$" | while read img; do
+ls "$ORIG/" | grep -iE "jpg|cr2|png$" | while read img; do
 	if [ -f "$FILTER/$img" ]; then
 		echo -n "."
 	else
