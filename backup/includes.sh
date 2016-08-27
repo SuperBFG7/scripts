@@ -4,12 +4,11 @@
 
 DATA="/data"
 PI="/mnt/pi"
-
 EXTERNAL="/mnt/external"
 NAS="pimedia:/data"
 SERVER="despite:/home/daniel/backup"
 
-SOURCES="$DATA $PI"
+SOURCES="$DATA $PI $NAS $EXTERNAL"
 TARGETS="$NAS $EXTERNAL $SERVER"
 
 RSYNC_OPTS="-av --progress --delete --exclude all/ --exclude lost+found/"
@@ -34,7 +33,7 @@ backup2() {
 	dst="$BKP/$2"
 	shift 2
 
-	if [ ! -e "$src" ]; then
+	if [ -z "`echo $src | grep -E '^[^/]*:'`" -a ! -e "$src" ]; then
 		echo "skipping '$src' (does not exist)"
 		return 0
 	fi
