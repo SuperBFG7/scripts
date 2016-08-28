@@ -5,11 +5,12 @@
 DATA="/data"
 PI="/mnt/pi"
 EXTERNAL="/mnt/external"
+BACKUP="/mnt/backup"
 NAS="pimedia:/data"
 SERVER="despite:/home/daniel/backup"
 
 SOURCES="$DATA $PI $NAS $EXTERNAL"
-TARGETS="$NAS $EXTERNAL $SERVER"
+TARGETS="$NAS $EXTERNAL $SERVER $BACKUP"
 
 RSYNC_OPTS="-av --progress --delete --exclude all/ --exclude lost+found/"
 
