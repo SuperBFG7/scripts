@@ -19,7 +19,7 @@ header "/home/daniel/"
 rsync $@ ${RSYNC_OPTS[@]} "/home/daniel/" "$BKP/backup/home.daniel/"
 # backup pi data
 header "to backup pi data run:"
-echo rsync $@ -av --progress --delete --rsh=ssh --exclude mustang/ --exclude rsnapshot/ pimedia:/data/backup/ $BKP/backup/
+echo rsync $@ -av --progress --delete --rsh=ssh --exclude raid/ --exclude home.daniel/ --exclude mustang/ --exclude rsnapshot/ pi3:/data/backup/ $BKP/backup/
 
 # backup root
 header "to backup /etc/ run as root:"
@@ -27,4 +27,4 @@ echo rsync $@ ${RSYNC_OPTS[@]} "/etc/" "$BKP/backup/mustang/etc/"
 
 # backup pi root
 header "to backup pi root run as root:"
-echo rsync $@ -av --progress --delete --delete-excluded --rsh=ssh --include /rsnapshot/ --include /rsnapshot/daily.0/ --exclude rsnapshot/*/ pi3:/data/backup/ $BKP/backup/
+echo rsync $@ -av --progress --delete --rsh=ssh pi3:/data/backup/rsnapshot/daily.0/ $BKP/backup/rsnapshot/
