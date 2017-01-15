@@ -7,8 +7,6 @@ args="imgdir"
 # check arguments
 check_arg "$1" "$args" "no image directory specified"
 
-SIZE="800x800"
-
 # basic assignments
 DIR="$1"
 
