@@ -10,7 +10,8 @@ backup "music/library/" $@ --exclude "high/" --exclude "new/"
 backup "music/lossless/flac/" $@
 backup "music/lossless/flac.beets/" $@
 backup "music/lossless/flac.beets.lossy/" $@
-backup "music/lossy/" $@ --exclude "flac.beets/" --exclude "new.p2p"
+backup "music/lossless/flac.beets.p2p/" $@
+backup "music/lossy/" $@ --exclude "flac/" --exclude "flac.beets/" --exclude "new.p2p"
 backup "music/lossy/new.p2p/" $@
 
 #backup "music/mp3.new/" $@
