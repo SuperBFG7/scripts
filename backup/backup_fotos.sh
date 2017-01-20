@@ -4,9 +4,8 @@
 
 setup_backup
 
-backup "fotos/Hochzeit/" $@
-backup "fotos/jpg/" $@
-backup "fotos/raw/" $@
-backup "fotos/tif/" $@
-backup "fotos/TODO/" $@
-backup "fotos/video/" $@
+for i in "$ORIG/fotos/"*/; do
+	j=`echo $i | sed -e "s:^$ORIG/::"`
+	backup "$j" $@
+done
+
