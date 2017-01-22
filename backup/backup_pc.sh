@@ -4,27 +4,27 @@
 
 setup_backup
 
-RSYNC_OPTS=(
-	-av	--progress --delete --delete-excluded
+OPTS=(
+	-av	--progress --delete
+)
+
+EXCLUDES=(
+	--delete-excluded
 	--exclude 'lost+found/'
 	--exclude '.cache/'
 	--exclude '.dropbox.cache/'
 	--exclude '.dropbox-dist/'
 )
 
-header "/data/raid/"
-rsync $@ ${RSYNC_OPTS[@]} "/data/raid/" "$BKP/backup/raid/"
+if [ "`whoami`" = "root" ]; then
+	backup "backup/etc.mustang/" $@
+	backup "backup/rsnapshot/daily.0/" $@
+else
+	backup "backup/home.daniel/" $@ ${EXCLUDES[@]}
+	backup "backup/home.despite/" $@
+	backup "backup/raid/" $@
+	backup "backup/windows/" $@
 
-header "/home/daniel/"
-rsync $@ ${RSYNC_OPTS[@]} "/home/daniel/" "$BKP/backup/home.daniel/"
-# backup pi data
-header "to backup pi data run:"
-echo rsync $@ -av --progress --delete --rsh=ssh --exclude raid/ --exclude home.daniel/ --exclude mustang/ --exclude rsnapshot/ pi3:/data/backup/ $BKP/backup/
+	header "re-run as root to backup system files"
+fi
 
-# backup root
-header "to backup /etc/ run as root:"
-echo rsync $@ ${RSYNC_OPTS[@]} "/etc/" "$BKP/backup/mustang/etc/"
-
-# backup pi root
-header "to backup pi root run as root:"
-echo rsync $@ -av --progress --delete --rsh=ssh pi3:/data/backup/rsnapshot/daily.0/ $BKP/backup/rsnapshot/
