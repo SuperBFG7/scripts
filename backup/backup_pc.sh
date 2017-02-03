@@ -23,6 +23,7 @@ else
 	backup "backup/home.daniel/" $@ ${EXCLUDES[@]}
 	backup "backup/home.despite/" $@
 	backup "backup/raid/" $@
+	backup "backup/space/" $@
 	backup "backup/windows/" $@
 
 	header "re-run as root to backup system files"
