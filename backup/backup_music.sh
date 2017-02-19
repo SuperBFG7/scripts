@@ -4,14 +4,26 @@
 
 setup_backup
 
-backup "music/band/" $@
-backup "music/incoming/" $@
-backup "music/library/" $@ --exclude "high/" --exclude "new/"
-backup "music/lossless/flac/" $@
-backup "music/lossless/flac.beets/" $@
-backup "music/lossless/flac.beets.lossy/" $@
-backup "music/lossless/flac.beets.p2p/" $@
-backup "music/lossy/" $@ --exclude "flac/" --exclude "flac.beets/" --exclude "new.p2p"
-backup "music/lossy/new.p2p/" $@
+EXCLUDE="library|new|shared"
 
-#backup "music/mp3.new/" $@
+for i in "$ORIG/music/"*/; do
+	j=`echo $i | sed -e "s:^$ORIG/::"`
+	filtered=`echo $i | grep -E "$EXCLUDE"`
+	if [ ! -z "$filtered" ]; then
+		continue
+	fi
+	backup "$j" $@
+done
+
+EXCLUDE="zz_"
+
+for i in "$ORIG/music/_new/"*/; do
+	j=`echo $i | sed -e "s:^$ORIG/::"`
+	filtered=`echo $i | grep -E "$EXCLUDE"`
+	if [ ! -z "$filtered" ]; then
+		continue
+	fi
+	backup "$j" $@
+done
+
+backup "music/library/" $@ --exclude "high/" --exclude "new/"
