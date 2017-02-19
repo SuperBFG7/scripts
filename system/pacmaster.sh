@@ -8,6 +8,7 @@ fi
 
 . `dirname "$0"`/includes.sh
 
+pkgfile -u
 header "checking AUR updates..."
 . /etc/makepkg.conf
 repo="custom"
