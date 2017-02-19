@@ -10,6 +10,7 @@ EXCLUDES=(
 	--exclude '.cache/'
 	--exclude '.dropbox.cache/'
 	--exclude '.dropbox-dist/'
+	--exclude '.git/objects/'
 )
 
 if [ "`whoami`" = "root" ]; then
