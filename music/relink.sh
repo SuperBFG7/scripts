@@ -28,14 +28,13 @@ if [ ! -z "$1" ]; then
 	pause
 
 	unstow_dir "/data/music/library/high"
-	unstow_dir "/data/music/lossless/flac"
-	unstow_dir "/data/music/lossless/flac.beets.lossy"
-	unstow_dir "/data/music/lossy/ogg"
-	unstow_dir "/data/music/lossy/ogg.beets"
-	unstow_dir "/data/music/lossy/mp3/"
-	unstow_dir "/data/music/lossy/mp3.beets/"
-	unstow_dir "/data/music/lossy/aac.beets/"
-	unstow_dir "/data/music/lossy/mpc.beets/"
+	unstow_dir "/data/music/flac.beets"
+	unstow_dir "/data/music/ogg"
+	unstow_dir "/data/music/ogg.beets"
+	unstow_dir "/data/music/mp3/"
+	unstow_dir "/data/music/mp3.beets/"
+	unstow_dir "/data/music/aac.beets/"
+	unstow_dir "/data/music/mpc.beets/"
 	exit 0
 fi
 
@@ -43,17 +42,16 @@ header "stowing all music directories"
 pause
 
 # stow flac
-stow_dir "/data/music/lossless/flac"
-stow_dir "/data/music/lossless/flac.beets.lossy"
+stow_dir "/data/music/flac.beets"
 # stow ogg
-stow_dir "/data/music/lossy/ogg"
-stow_dir "/data/music/lossy/ogg.beets"
+stow_dir "/data/music/ogg"
+stow_dir "/data/music/ogg.beets"
 # stow mp3
-stow_dir "/data/music/lossy/mp3/"
-stow_dir "/data/music/lossy/mp3.beets/"
+stow_dir "/data/music/mp3/"
+stow_dir "/data/music/mp3.beets/"
 # stow aac and musepack
-stow_dir "/data/music/lossy/aac.beets/"
-stow_dir "/data/music/lossy/mpc.beets/"
+stow_dir "/data/music/aac.beets/"
+stow_dir "/data/music/mpc.beets/"
 
 # stow library
 stow_dir "/data/music/library/high"
