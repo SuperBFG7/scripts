@@ -12,7 +12,7 @@ check_arg "$1" "$args" "no image directory specified"
 DIR="$1"
 MODE="$2"
 
-ls "$DIR/" | grep -iE "jpe?g$" | while read img; do
+ls "$DIR/*.{jpg,jpeg,JPG,JPEG}" | while read img; do
 	if [ -z "$MODE" ]; then
 		name=`jhead "$DIR/$img" | grep Comment | sed -e 's/.*: //'`
 	else

@@ -23,7 +23,7 @@ DEST="$2"
 # create destination directory
 mkdir -p "$ORIG"
 
-ls "$ORIG/" | grep -iE "jpe?g$" | while read img; do
+ls "$ORIG/*{jpg,jpeg,JPG,JPEG}" | while read img; do
 	echo $img" ..."
 
 	# resize file

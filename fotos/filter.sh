@@ -19,7 +19,7 @@ fi
 
 mkdir -p "$ORIG/_filtered"
 
-ls "$ORIG/" | grep -iE "jpg|cr2|nef|png$" | while read img; do
+ls "$ORIG/*.{jpg,cr2,nef,png,JPG,CR2,NEF,PNG}" | while read img; do
 	if [ ! -z "$OEXT" ]; then
 		fimg=`echo $img | sed -e "s/$OEXT/$FEXT/"`
 	else

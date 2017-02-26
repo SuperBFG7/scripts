@@ -14,7 +14,7 @@ if [ ! "`whoami`" = "root" ]; then
 	die "must be root to mount encrypted disk"
 fi
 
-for i in `ls /dev/sd[abcdefgh]1`; do
+for i in `ls /dev/sd[a-z]1`; do
 	echo "testing $i ..."
 	if [ ! -z "`cryptsetup isLuks "$i" && echo 'luks'`" ]; then
 		echo "opening $i ..."
