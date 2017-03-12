@@ -12,4 +12,8 @@ beets_check ()
 	done
 }
 
-album_playlist $@ | beets_check
+if [ ! -z "$2" ]; then
+	album_playlist $1 | beets_check
+else
+	eval "`album_playlist $1 | beets_check`"
+fi

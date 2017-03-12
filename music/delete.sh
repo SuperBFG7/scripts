@@ -2,6 +2,8 @@
 
 . `dirname "$0"`/includes.sh
 
+MPD_DIR="/var/lib/mpd/music"
+
 beets_delete ()
 {
 	while read i; do
@@ -17,21 +19,26 @@ delete ()
 		artist="`echo $i | artist`"
 		album="`echo $i | album`"
 
-		mpc search -f '"/var/lib/mpd/music/%file%"' artist "$artist" album "$album" | xargs $@
+		mpc search -f "\"$MPD_DIR/%file%\"" artist "$artist" album "$album" | xargs $@
 	done
 }
 
 
-album_playlist $@ | beets_delete
-
-
-header "THE FOLLOWING FILES WILL BE DELETED" > /dev/stderr
-album_playlist $@ | delete "ls -l" > /dev/stderr
-header "REALLY DELETE THESE FILES? (Y, n)" > /dev/stderr
-read i
-i=${i:-y}
-if [ "$i" != "y" ]; then
-	exit 1
+if [ ! -z "$2" ]; then
+	album_playlist $1 | beets_delete
+else
+	eval "`album_playlist $1 | beets_delete`"
 fi
 
-album_playlist $@ | delete "rm -f"
+if [ -d $MPD_DIR ]; then
+	header "THE FOLLOWING FILES WILL BE DELETED" > /dev/stderr
+	album_playlist $@ | delete "ls -l" > /dev/stderr
+	header "REALLY DELETE THESE FILES? (Y, n)" > /dev/stderr
+	read i
+	i=${i:-y}
+	if [ "$i" != "y" ]; then
+		exit 1
+	fi
+
+	album_playlist $@ | delete "rm -f"
+fi
