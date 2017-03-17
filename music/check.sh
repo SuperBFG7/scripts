@@ -5,10 +5,10 @@
 beets_check ()
 {
 	while read i; do
-		artist="`echo $i | artist`"
+		albumartist="`echo $i | albumartist`"
 		album="`echo $i | album`"
-		echo "mpc searchadd artist \"$artist\" album \"$album\""
-		echo "beet ls -f '\$format:\$bitrate - \$path' artist:\"$artist\" album:\"$album\""
+		echo "mpc searchadd albumartist \"$albumartist\" album \"$album\""
+		echo "beet ls -f '\$format:\$bitrate - \$path' albumartist:\"$albumartist\" album:\"$album\""
 	done
 }
 

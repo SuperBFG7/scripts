@@ -5,10 +5,10 @@
 beets_modify ()
 {
 	while read i; do
-		artist="`echo $i | artist`"
+		albumartist="`echo $i | albumartist`"
 		album="`echo $i | album`"
-		echo "beet modify new! artist:\"$artist\" album:\"$album\""
-		echo "beet move artist:\"$artist\" album:\"$album\""
+		echo "beet modify new! albumartist:\"$albumartist\" album:\"$album\""
+		echo "beet move albumartist:\"$albumartist\" album:\"$album\""
 	done
 }
 

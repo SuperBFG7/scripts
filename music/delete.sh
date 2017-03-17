@@ -7,19 +7,19 @@ MPD_DIR="/var/lib/mpd/music"
 beets_delete ()
 {
 	while read i; do
-		artist="`echo $i | artist`"
+		albumartist="`echo $i | albumartist`"
 		album="`echo $i | album`"
-		echo "beet rm -d albumartist:\"$artist\" album:\"$album\""
+		echo "beet rm -d albumartist:\"$albumartist\" album:\"$album\""
 	done
 }
 
 delete ()
 {
 	while read i; do
-		artist="`echo $i | artist`"
+		albumartist="`echo $i | albumartist`"
 		album="`echo $i | album`"
 
-		mpc search -f "\"$MPD_DIR/%file%\"" artist "$artist" album "$album" | xargs $@
+		mpc search -f "\"$MPD_DIR/%file%\"" albumartist "$albumartist" album "$album" | xargs $@
 	done
 }
 

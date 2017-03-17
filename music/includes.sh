@@ -2,7 +2,7 @@
 
 . `git rev-parse --show-toplevel`/includes.sh	#STRIP#
 
-# get artist and album from mpd playlist
+# get albumartist and album from mpd playlist
 album_playlist ()
 {
 	if [ ! -z "$1" ]; then
@@ -11,13 +11,13 @@ album_playlist ()
 		limit="1"
 	fi
 
-	mpc playlist -f 'artist:"%artist%" album:"%album%"' | uniq | head -n $limit
+	mpc playlist -f 'albumartist:"%albumartist%" album:"%album%"' | uniq | head -n $limit
 }
 
-# get artist
-artist ()
+# get albumartist
+albumartist ()
 {
-	sed -e 's/.*artist:"//' -e 's/".*//'
+	sed -e 's/.*albumartist:"//' -e 's/".*//'
 }
 
 # get album
