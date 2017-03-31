@@ -24,10 +24,10 @@ delete ()
 }
 
 
-if [ ! -z "$2" ]; then
+if [ ! -z "$1" ]; then
 	album_playlist $1 | beets_delete
 else
-	eval "`album_playlist $1 | beets_delete`"
+	eval "`album_playlist | beets_delete`"
 fi
 
 if [ -d $MPD_DIR ]; then

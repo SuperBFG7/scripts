@@ -8,7 +8,7 @@ album_playlist ()
 	if [ ! -z "$1" ]; then
 		limit=$1
 	else
-		limit="1"
+		limit="-0"
 	fi
 
 	mpc playlist -f 'albumartist:"%albumartist%" album:"%album%"' | uniq | head -n $limit
