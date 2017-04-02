@@ -1,0 +1,17 @@
+[Unit]
+Description=Network connectivity (%i)
+Wants=network.target
+Before=network.target
+BindsTo=sys-subsystem-net-devices-%i.device
+After=sys-subsystem-net-devices-%i.device
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+EnvironmentFile=/etc/conf.d/net-conf-%i
+ExecStart=/usr/local/bin/net-up.sh %i
+ExecStop=/usr/local/bin/net-down.sh %i
+
+[Install]
+WantedBy=multi-user.target
+
