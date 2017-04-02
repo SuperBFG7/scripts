@@ -28,6 +28,7 @@ if [ ! -z "$1" ]; then
 	album_playlist $1 | beets_delete
 else
 	eval "`album_playlist | beets_delete`"
+	mpc update new
 fi
 
 if [ -d $MPD_DIR ]; then

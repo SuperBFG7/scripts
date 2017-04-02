@@ -16,4 +16,5 @@ if [ ! -z "$1" ]; then
 	album_playlist $1 | beets_modify
 else
 	eval "`album_playlist | beets_modify`"
+	mpc update new
 fi
