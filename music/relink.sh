@@ -28,30 +28,19 @@ if [ ! -z "$1" ]; then
 	pause
 
 	unstow_dir "/data/music/library/high"
-	unstow_dir "/data/music/flac.beets"
-	unstow_dir "/data/music/ogg"
-	unstow_dir "/data/music/ogg.beets"
-	unstow_dir "/data/music/mp3/"
-	unstow_dir "/data/music/mp3.beets/"
-	unstow_dir "/data/music/aac.beets/"
-	unstow_dir "/data/music/mpc.beets/"
+	for i in "/data/music/"*.beets; do
+		unstow_dir "$i"
+	done
 	exit 0
 fi
 
 header "stowing all music directories"
 pause
 
-# stow flac
-stow_dir "/data/music/flac.beets"
-# stow ogg
-stow_dir "/data/music/ogg"
-stow_dir "/data/music/ogg.beets"
-# stow mp3
-stow_dir "/data/music/mp3/"
-stow_dir "/data/music/mp3.beets/"
-# stow aac and musepack
-stow_dir "/data/music/aac.beets/"
-stow_dir "/data/music/mpc.beets/"
+# stow music dirs
+for i in "/data/music/"*.beets; do
+	stow_dir "$i"
+done
 
 # stow library
 stow_dir "/data/music/library/high"
