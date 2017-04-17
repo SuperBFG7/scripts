@@ -24,6 +24,7 @@ DEST="$2"
 mkdir -p "$ORIG"
 
 ls "$ORIG/"*{jpg,jpeg,JPG,JPEG} | while read img; do
+	img=`basename "$img"`
 	echo $img" ..."
 
 	# resize file
