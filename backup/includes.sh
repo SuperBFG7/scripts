@@ -40,7 +40,7 @@ backup2() {
 	fi
 
 	header "'$src' --> '$dst'"
-	rsync $@ $RSYNC_OPTS "$src" "$dst"
+	eval rsync $@ $RSYNC_OPTS "$src" "$dst"
 }
 
 backup () {
