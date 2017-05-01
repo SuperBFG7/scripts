@@ -10,7 +10,11 @@ EXCLUDES=(
 )
 
 if [ "`whoami`" = "root" ]; then
-	backup "backup/rsnapshot/daily.0/" $@ ${EXCLUDES[@]}
+	if [ "`hostname`" = "pi3" ]; then
+		backup "backup/rsnapshot/daily.0/" $@
+	else
+		backup "backup/rsnapshot/daily.0/" $@ ${EXCLUDES[@]}
+	fi
 else
 	for i in "$ORIG/backup/"*/; do
 		if [ ${i##$ORIG} = "/backup/rsnapshot/" ]; then
