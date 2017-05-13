@@ -6,7 +6,7 @@ TARGET  = /usr/local/bin/
 
 all: clean $(MODULES)
 
-select:
+select: clean
 	select i in all $(MODULES); do \
 		$(MAKE) $$i; \
 		break; \
