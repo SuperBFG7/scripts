@@ -5,7 +5,6 @@
 setup_backup
 
 for i in "$ORIG/fotos/"*/; do
-	j=`echo $i | sed -e "s:^$ORIG/::"`
-	backup "$j" $@
+	backup "$i" $@
 done
 

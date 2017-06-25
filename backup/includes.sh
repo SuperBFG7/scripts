@@ -44,6 +44,17 @@ backup2() {
 }
 
 backup () {
-	backup2 $1 $@
+	# remove prefix
+	rel_path="${1#$ORIG/}"
+	shift 1
+	backup2 $rel_path $rel_path $@
+}
+
+backup_exclude () {
+	# skip excludes
+	[[ $2 =~ $1 ]] && echo "skipping '$2' (excluded)" && return 0
+
+	shift 1
+	backup $@
 }
 

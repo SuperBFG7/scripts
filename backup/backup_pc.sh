@@ -17,10 +17,11 @@ if [ "`whoami`" = "root" ]; then
 	fi
 else
 	for i in "$ORIG/backup/"*/; do
-		if [ ${i##$ORIG} = "/backup/rsnapshot/" ]; then
+		path=${i##$ORIG}
+		if [ "$path" = "/backup/rsnapshot/" ]; then
 			continue
 		fi
-		backup "${i##$ORIG/}" $@
+		backup "$path/" $@
 	done
 
 	header "re-run as root to backup system files"
