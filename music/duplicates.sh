@@ -7,9 +7,7 @@ check ()
 	while read i; do
 		artist=`echo "$i" | sed -e "s#.*/\([^/]\+\)/\([^/]\+\)/\?#\1#"`
 		album=`echo "$i" | sed -e "s#.*/\([^/]\+\)/\([^/]\+\)/\?#\2#"`
-		if [ -z "`echo $album | grep '\['`" ]; then
-			continue
-		fi
+		[[ $album = "*\[*" ]] || continue
 		album=`echo "$album" | sed -e "s: \[.*::"`
 		echo mpc searchadd artist \"$artist\" album \"$album\"
 		echo ls -lh \"$i\"
