@@ -13,4 +13,4 @@ for i in "$ORIG/music/_new/"*/; do
 	backup_exclude "zz_" $i $@
 done
 
-backup "music/library/" $@ --exclude "high/" --exclude "new/"
+backup "music/library/" $@ #--exclude "high/" --exclude "new/"
