@@ -12,7 +12,7 @@ SERVER="despite:/home/daniel/backup"
 SOURCES="$DATA $PI $NAS $EXTERNAL"
 TARGETS="$NAS $EXTERNAL $SERVER $BACKUP"
 
-RSYNC_OPTS="-av --progress --delete --exclude all/ --exclude lost+found/"
+RSYNC_OPTS="-av --progress --delete --exclude lost+found/"
 
 setup_backup() {
 	header "select source"
