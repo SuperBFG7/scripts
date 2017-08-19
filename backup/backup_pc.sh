@@ -4,17 +4,8 @@
 
 setup_backup
 
-EXCLUDES=(
-	--include "`hostname`/"
-	--exclude '/\*/'
-)
-
 if [ "`whoami`" = "root" ]; then
-	if [ "`hostname`" = "pi3" ]; then
-		backup "backup/rsnapshot/daily.0/" $@
-	else
-		backup "backup/rsnapshot/daily.0/" $@ ${EXCLUDES[@]}
-	fi
+	backup "backup/rsnapshot/daily.0/" $@
 else
 	for i in "$ORIG/backup/"*/; do
 		path=${i##$ORIG}
