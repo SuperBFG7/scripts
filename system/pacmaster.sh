@@ -1,6 +1,11 @@
 #!/bin/bash
 
-pacmatic $@
+if hash pacmatic 2>/dev/null; then
+	pacmatic $@
+else
+	echo "*** WARNING: pacmatic not found, using pacman instead ***"
+	/usr/bin/pacman $@
+fi
 
 if [ "$1" != "-Syu" ]; then
 	exit 0
@@ -10,6 +15,12 @@ fi
 
 if hash pkgfile 2>/dev/null; then
 	pkgfile -u
+else
+	echo "*** WARNING: pkgfile not found, skipping ***"
+fi
+if ! hash cower 2>/dev/null; then
+	echo "*** WARNING: cower not found, skipping AUR updates ***"
+	exit 0
 fi
 header "checking AUR updates..."
 . /etc/makepkg.conf

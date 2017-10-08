@@ -5,8 +5,10 @@
 header "System Status"
 systemctl status --no-pager
 echo ""
-header "Docker Container Status"
-docker ps
+if hash docker 2>/dev/null; then
+	header "Docker Container Status"
+	docker ps
+fi
 
 header "Failed Services" pause
 systemctl --failed --no-pager
