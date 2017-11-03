@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. `dirname "$0"`/includes.sh
+
 if hash pacmatic 2>/dev/null; then
 	pacmatic $@
 else
@@ -10,8 +12,6 @@ fi
 if [ "$1" != "-Syu" ]; then
 	exit 0
 fi
-
-. `dirname "$0"`/includes.sh
 
 if hash pkgfile 2>/dev/null; then
 	pkgfile -u
