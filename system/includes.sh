@@ -17,3 +17,9 @@ function header() {
 	echo " " $1
 	echo "------------------------------------------------------------------------------"
 }
+
+function debug() {
+	if [ ! -z "$DEBUG" ]; then
+		echo "`date --rfc-3339=seconds` -- $@"
+	fi
+}
