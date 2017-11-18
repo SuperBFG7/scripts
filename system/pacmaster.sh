@@ -22,6 +22,7 @@ if ! hash cower 2>/dev/null; then
 	echo "*** WARNING: cower not found, skipping AUR updates ***"
 	exit 0
 fi
+systemctl daemon-reload
 header "checking AUR updates..."
 . /etc/makepkg.conf
 repo="custom"
