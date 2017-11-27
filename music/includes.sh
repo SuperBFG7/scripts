@@ -25,3 +25,23 @@ album ()
 {
 	sed -e 's/.*album:"//' -e 's/".*//'
 }
+
+# loop over a specified directory
+iterate() {
+	src=$1
+	action=$2
+	prefix=$3
+
+#	echo
+#	echo "entering directory $prefix"`basename "$src"`
+
+	ls -d "$src/"* 2> /dev/null | while read i; do
+		$action "$i" || exit 1
+		if [ -d "$i" ]; then
+			iterate "$i" "$action" "$src/" || exit 1
+		fi
+	done || die "FAILED to iterate"
+
+#	echo "leaving directory $prefix"`basename "$src"`
+}
+
