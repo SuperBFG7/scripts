@@ -28,7 +28,7 @@ encode() {
 		return
 	fi
 
-	mp3file=`echo "$MP3DIR/${srcfile##$SRCDIR}" | sed -e "s/.[a-Z]\+$/.mp3/"`
+	mp3file=`echo "$MP3DIR/${srcfile##$SRCDIR}" | sed -e "s/.[[:alpha:]]\+$/.mp3/"`
 
 	# skip existing files, but re-encode newer
 	if [ -f "$mp3file" ]; then
