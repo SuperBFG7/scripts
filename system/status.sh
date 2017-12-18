@@ -8,6 +8,7 @@ echo ""
 if hash docker 2>/dev/null; then
 	header "Docker Container Status"
 	docker ps
+	docker stats --no-stream
 fi
 
 header "Failed Services" pause
