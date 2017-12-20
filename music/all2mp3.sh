@@ -20,7 +20,7 @@ encode() {
 	if [ -d "$srcfile" ]; then
 		destdir="$MP3DIR/${srcfile##$SRCDIR}"
 		if [ ! -d "$destdir" ]; then
-			echo "creating dir  $destdir"
+			echo "creating dir          $destdir"
 			if [ -z "$dryrun" ]; then
 				mkdir -p "$destdir"
 			fi
@@ -39,13 +39,13 @@ encode() {
 			fi
 			rm "$mp3file"
 		else
-			echo "skipping file $mp3file"
+			echo "skipping existing file $mp3file"
 			return
 		fi
 	fi
-	echo "creating file $mp3file"
 
 	if [ ! -z "$dryrun" ]; then
+		echo "processing file $srcfile"
 		return
 	fi
 
@@ -60,10 +60,12 @@ encode() {
 			TRACKNUMBER=`metaflac "$srcfile" --show-tag=TRACKNUMBER | sed s/.*=//g`
 			DATE=`metaflac "$srcfile" --show-tag=DATE | sed s/.*=//g | cut -b -4`
 
+			echo "encoding FLAC file to $mp3file"
+
 			# create mp3 file
-			flac -cd "$srcfile" | lame --ignore-tag-errors \
+			flac -s -cd "$srcfile" | lame -S --ignore-tag-errors \
 				--ta "$ARTIST" --tt "$TITLE" --tl "$ALBUM" --tg "$GENRE" \
-				--tn "$TRACKNUMBER" --ty "$DATE" - "$mp3file"
+				--tn "$TRACKNUMBER" --ty "$DATE" - "$mp3file" 2> /dev/null
 		;;
 		"ogg")
 			# extract tags
@@ -74,18 +76,22 @@ encode() {
 			TRACKNUMBER=`vorbiscomment "$srcfile" | grep -iE "^TRACKNUMBER=" | sed s/.*=//g`
 			DATE=`vorbiscomment "$srcfile" | grep -iE "^DATE=" | sed s/.*=//g | cut -b -4`
 
+			echo "encoding OGG  file to $mp3file"
+
 			# create mp3 file
-			oggdec -o /dev/stdout "$srcfile" | lame --ignore-tag-errors \
+			oggdec -Q -o /dev/stdout "$srcfile" | lame -S --ignore-tag-errors \
 				--ta "$ARTIST" --tt "$TITLE" --tl "$ALBUM" --tg "$GENRE" \
-				--tn "$TRACKNUMBER" --ty "$DATE" - "$mp3file"
+				--tn "$TRACKNUMBER" --ty "$DATE" - "$mp3file" 2> /dev/null
 		;;
 		"mp3")
-			if [ ! -z "$f" ]; then
-				cp -aL "$srcfile" "$mp3file"
-			fi
+			echo "copying  MP3  file to $mp3file"
+			cp -aL "$srcfile" "$mp3file"
+		;;
+		"jpg" | "pdf")
+			echo "skipping file $srcfile (not music)"
 		;;
 		*)
-			echo "UNKNOW FILE FORMAT"
+			echo "UNKNOW FILE FORMAT: $f"
 			exit 1
 		;;
 	esac
