@@ -20,7 +20,7 @@ encode() {
 	if [ -d "$srcfile" ]; then
 		destdir="$MP3DIR/${srcfile##$SRCDIR}"
 		if [ ! -d "$destdir" ]; then
-			echo "creating dir          $destdir"
+			echo "creating directory    $destdir"
 			if [ -z "$dryrun" ]; then
 				mkdir -p "$destdir"
 			fi
