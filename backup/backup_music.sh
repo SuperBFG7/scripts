@@ -4,7 +4,7 @@
 
 setup_backup
 
-EXCLUDE="library|new|shared|rip"
+EXCLUDE="library|new|shared|rip|iTunes"
 for i in "$ORIG/music/"*/; do
 	backup_exclude $EXCLUDE $i $@
 done
