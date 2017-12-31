@@ -12,16 +12,23 @@ check_arg "$1" "$args" "no image directory specified"
 DIR="$1"
 MODE="$2"
 
-ls "$DIR/"*.{jpg,jpeg,JPG,JPEG} | while read img; do
+ls "$DIR/"*.{jpg,jpeg,JPG,JPEG} 2> /dev/null | while read img; do
 	if [ -z "$MODE" ]; then
-		name=`jhead "$DIR/$img" | grep Comment | sed -e 's/.*: //'`
+		name=`jhead "$img" | grep Comment | sed -e 's/.*: //'`
 	else
-		name=`jhead "$DIR/$img" | grep Date | sed -e 's/.*: //' -e 's/:/-/1' -e 's/:/-/1' -e 's/:/./g'`".jpg"
+#		name=`jhead "$img" | grep Date | sed -e 's/.*: //' -e 's/:/-/1' -e 's/:/-/1' -e 's/:/./g'`"_`basename $img`"
+		name=`jhead "$img" | grep Date | sed -e 's/.*: //' -e 's/://g' -e 's/ //g'`"_`basename $img`"
 	fi
 
-	echo "$img  --> $name"
-	mv -n "$DIR/$img" "$DIR/$name"
+	if [ -z "$name" -o "$name" = ".jpg" ]; then
+		echo "$img target name is empty, skipping rename..."
+	else
+		echo "$img  --> $name"
+		mv -n "$img" "$DIR/$name"
+	fi
 done
+
+exit 0
 
 if [ ! -z "$MODE" ]; then
 	echo "pushd \"$DIR\""

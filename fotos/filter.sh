@@ -11,6 +11,8 @@ check_arg "$2" "$args" "no filter directory specified"
 ORIG="$1"
 FILTER="$2"
 
+OEXT="{jpg,cr2,nef,png,JPG,CR2,NEF,PNG}"
+
 if [ ! -z "$3" ]; then
 	check_arg "$4" "$args" "no filter extension specified"
 	OEXT="$3"
@@ -19,9 +21,9 @@ fi
 
 mkdir -p "$ORIG/_filtered"
 
-ls "$ORIG/"*.{jpg,cr2,nef,png,JPG,CR2,NEF,PNG} | while read img; do
+ls "$ORIG/"*.$OEXT | while read img; do
 	if [ ! -z "$OEXT" ]; then
-		fimg="${img%.$OEXT}.$FEXT}"
+		fimg="${img%.$OEXT}.$FEXT"
 	else
 		fimg=$img
 	fi
