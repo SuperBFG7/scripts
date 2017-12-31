@@ -45,3 +45,23 @@ iterate() {
 #	echo "leaving directory $prefix"`basename "$src"`
 }
 
+stow_dir(){
+	basedir="$1"
+
+	header "stowing $basedir"
+	
+	ls "$basedir" | grep -Ev "^(all|block|good|new)$" | while read i; do
+		stow -v -R -d "$basedir" -t "$basedir/all" "$i" || die "stow failed!"
+	done || die "stow failed!"
+}
+
+unstow_dir(){
+	basedir="$1"
+
+	header "unstowing $basedir"
+	
+	ls "$basedir" | grep -Ev "^(all|block|good|new)$" | while read i; do
+		stow -v -D -d "$basedir" -t "$basedir/all" "$i" || die "stow failed!"
+	done || die "stow failed!"
+}
+
