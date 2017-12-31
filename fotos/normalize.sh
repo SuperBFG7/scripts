@@ -19,3 +19,5 @@ rename JPG jpg "$DIR/"*
 # autorotate images based on EXIF orientation flag
 jhead -autorot "$DIR/"*.jpg
 
+# remove executable flag
+chmod a-x "$DIR/"*.*
