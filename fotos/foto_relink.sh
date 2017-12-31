@@ -2,6 +2,11 @@
 
 . `dirname "$0"`/includes.sh
 
+args="albumdir (example: eos/2017-01-01_foo)"
+
+# check arguments
+check_arg "$1" "$args" "no album directory specified"
+
 cameras="eos ipad iphone"
 src="${1#*/}"
 
@@ -40,7 +45,7 @@ header "added album $src (not yet stowed)"
 pause
 
 for q in jpg jpg.low; do
-	[ -e "jpg.selections/$q" ] || continue
+	[ -e "jpg.selections/$q" ] && continue
 	for s in 1_all 2_selected 3_best 4_verybest; do
 		mkdir -p "jpg.selections/$q/$s/all"
 	done

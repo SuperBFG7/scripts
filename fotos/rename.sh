@@ -20,7 +20,7 @@ ls "$DIR/"*.{jpg,jpeg,JPG,JPEG} 2> /dev/null | while read img; do
 		name=`jhead "$img" | grep Date | sed -e 's/.*: //' -e 's/://g' -e 's/ //g'`"_`basename $img`"
 	fi
 
-	if [ -z "$name" -o "$name" = ".jpg" ]; then
+	if [ -z "$name" -o "$name" = "_`basename $img`" ]; then
 		echo "$img target name is empty, skipping rename..."
 	else
 		echo "$img  --> $name"
