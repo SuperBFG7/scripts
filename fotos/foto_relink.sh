@@ -20,7 +20,7 @@ for i in 1 2 3 4 5; do
 	mkdir -p "jpg/$i/$src"
 	mkdir -p "jpg.low/$i/$src"
 	for c in $cameras; do
-		for j in "$c/$src/jpg.export/"*"_r$i.jpg"; do
+		for j in "$c/$src/jpg.export/"*"_r$i"*.jpg; do
 			[ -f "$j" ] || continue
 			f="`basename $j`"
 			ln -rs "$j" "jpg/$i/$src/${c}_$f"
@@ -28,7 +28,7 @@ for i in 1 2 3 4 5; do
 		done
 
 		[ "$c" = "eos" ] && continue
-		for j in "$c/$src/jpg.low/"*"_r$i.jpg"; do
+		for j in "$c/$src/jpg.low/"*"_r$i"*.jpg; do
 			[ -f "$j" ] || continue
 			f="`basename $j`"
 			ln -rs "$c/$src/jpg.low/$f" "jpg.low/$i/$src/${c}_$f"
