@@ -46,7 +46,7 @@ pause
 
 for q in jpg jpg.low; do
 	[ -e "jpg.selections/$q" ] && continue
-	for s in 1_all 2_selected 3_best 4_verybest; do
+	for s in 1_all 2_selected 3_best 4_verybest 5_portfolio; do
 		mkdir -p "jpg.selections/$q/$s/all"
 	done
 
@@ -58,6 +58,8 @@ for q in jpg jpg.low; do
 		ln -rs "$q/$i" "jpg.selections/$q/3_best"
 		[ $i -eq 3 ] && continue
 		ln -rs "$q/$i" "jpg.selections/$q/4_verybest"
+		[ $i -eq 4 ] && continue
+		ln -rs "$q/$i" "jpg.selections/$q/5_portfolio"
 	done
 done
 
@@ -65,4 +67,8 @@ for i in 1_all 2_selected 3_best 4_verybest; do
 	stow_dir "jpg.selections/jpg/$i"
 	stow_dir "jpg.selections/jpg.low/$i"
 done
+
+rm -f jpg.selections/jpg*/5_portfolio/all/*
+ln -rs jpg.selections/jpg/5_portfolio/5/*/* jpg.selections/jpg/5_portfolio/all/
+ln -rs jpg.selections/jpg.low/5_portfolio/5/*/* jpg.selections/jpg.low/5_portfolio/all/
 
