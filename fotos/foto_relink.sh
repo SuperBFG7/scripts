@@ -7,7 +7,7 @@ args="albumdir (example: eos/2017-01-01_foo)"
 # check arguments
 check_arg "$1" "$args" "no album directory specified"
 
-cameras="eos ipad iphone"
+cameras="eos hugin ipad iphone"
 src="${1#*/}"
 
 for i in $cameras jpg jpg.low jpg.selections; do
