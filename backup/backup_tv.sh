@@ -5,4 +5,5 @@
 setup_backup
 
 backup "video/tv/" $@
+backup "video/tv.archiv/" $@
 
