@@ -5,5 +5,11 @@
 setup_backup
 
 backup "video/" $@ \
+	--exclude 'archiv' \
 	--exclude 'tv/' \
-	--exclude 'tv.archiv/'
+	--exclude 'tv.archiv' \
+	--exclude 'videoclips'
+
+backup "video/archiv/" $@
+
+backup "video/videoclips/" $@

@@ -3,7 +3,7 @@
 . `git rev-parse --show-toplevel`/includes.sh	#STRIP#
 
 DATA="/data"
-PI="/mnt/pi"
+PI="/mnt/pi/data"
 EXTERNAL="/mnt/external"
 SECONDARY="/mnt/secondary"
 BACKUP="/mnt/backup"
