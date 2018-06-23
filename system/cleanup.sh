@@ -11,5 +11,3 @@ paccache -r
 header "cleaning package cache: uninstalled packages"
 paccache -ruk0
 
-header "optimizing package DB"
-pacman-optimize
