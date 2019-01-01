@@ -14,8 +14,19 @@ for i in $cameras jpg jpg.low jpg.selections; do
 	[ -e "$i" ] || die "$i does not exist; are you sure you are at the right directory?"
 done
 
-for i in 1 2 3 4 5; do
-	[ -e "jpg/$i/$src" ] && die "jpg/$i/$src already exists"
+for i in 1 2 3 4 5 0; do
+	if [ -e "jpg/$i/$src" ]; then
+		header "jpg/$i/$src already exists, remove it first? (y/N)"
+		read r
+		if [ "$r" = "y" ]; then
+			rm -fv jpg*/*/$src/*
+			rmdir -v jpg*/*/$src/
+		else
+			die "jpg/$i/$src already exists, cannot continue"
+		fi
+		header "jpg/$i/$src removed, continuing ..."
+		pause
+	fi
 
 	mkdir -p "jpg/$i/$src"
 	mkdir -p "jpg.low/$i/$src"
@@ -46,7 +57,7 @@ pause
 
 for q in jpg jpg.low; do
 	[ -e "jpg.selections/$q" ] && continue
-	for s in 1_all 2_selected 3_best 4_verybest 5_portfolio; do
+	for s in 1_all 2_selected 3_best 4_verybest 5_portfolio x_private; do
 		mkdir -p "jpg.selections/$q/$s/all"
 	done
 
@@ -61,6 +72,7 @@ for q in jpg jpg.low; do
 		[ $i -eq 4 ] && continue
 		ln -rs "$q/$i" "jpg.selections/$q/5_portfolio"
 	done
+	ln -rs "$q/0" "jpg.selections/$q/x_private"
 done
 
 for i in 1_all 2_selected 3_best 4_verybest; do
@@ -69,6 +81,9 @@ for i in 1_all 2_selected 3_best 4_verybest; do
 done
 
 rm -f jpg.selections/jpg*/5_portfolio/all/*
+rm -f jpg.selections/jpg*/x_private/all/*
 ln -rs jpg.selections/jpg/5_portfolio/5/*/* jpg.selections/jpg/5_portfolio/all/
 ln -rs jpg.selections/jpg.low/5_portfolio/5/*/* jpg.selections/jpg.low/5_portfolio/all/
+ln -rs jpg.selections/jpg/x_private/0/*/* jpg.selections/jpg/x_private/all/
+ln -rs jpg.selections/jpg.low/x_private/0/*/* jpg.selections/jpg.low/x_private/all/
 
