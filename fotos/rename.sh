@@ -17,7 +17,7 @@ ls "$DIR/"*.{jpg,jpeg,JPG,JPEG} 2> /dev/null | while read img; do
 		name=`jhead "$img" | grep Comment | sed -e 's/.*: //'`
 	else
 #		name=`jhead "$img" | grep Date | sed -e 's/.*: //' -e 's/:/-/1' -e 's/:/-/1' -e 's/:/./g'`"_`basename $img`"
-		name=`jhead "$img" | grep Date | sed -e 's/.*: //' -e 's/://g' -e 's/ //g'`"_`basename $img`"
+		name=`jhead "$img" | grep "Date/Time" | sed -e 's/.*: //' -e 's/://g' -e 's/ //g'`"_`basename $img`"
 	fi
 
 	if [ -z "$name" -o "$name" = "_`basename $img`" ]; then
