@@ -19,3 +19,5 @@ check ()
 }
 
 beet ls -p -a | grep "\[" | check | sort | uniq
+
+beet ls -p -a | sed -e "s#.*/\([^/]\+\)/\([^/]\+\)/\?#\1/\2#" | tr -cd '[:alnum:]/\n' | tr '[:upper:]' '[:lower:]' | sort | uniq -d
