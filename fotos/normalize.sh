@@ -17,7 +17,7 @@ rename CR2 cr2 "$DIR/"*
 rename JPG jpg "$DIR/"*
 
 # autorotate images based on EXIF orientation flag
-jhead -autorot "$DIR/"*.jpg
+jhead -autorot "$DIR/"*.jpg 2> /dev/null
 
 # remove executable flag
-chmod a-x "$DIR/"*.{cr2,jpg}
+chmod a-x "$DIR/"*.{cr2,jpg} 2> /dev/null
