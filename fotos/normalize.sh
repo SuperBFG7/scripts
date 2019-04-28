@@ -20,4 +20,4 @@ rename JPG jpg "$DIR/"*
 jhead -autorot "$DIR/"*.jpg
 
 # remove executable flag
-chmod a-x "$DIR/"*.*
+chmod a-x "$DIR/"*.{cr2,jpg}
