@@ -1,6 +1,12 @@
 #!/bin/bash
 
-. `dirname "$0"`/includes.sh
+if [ ! -f `dirname "$0"`/includes.sh ]; then
+	function debug () {
+		echo $@
+	}
+else
+	. `dirname "$0"`/includes.sh
+fi
 
 # IPs to check for availability
 IP="192.168.1.1 192.168.1.2 192.168.1.3"
