@@ -7,7 +7,7 @@ args="albumdir (example: eos/2017-01-01_foo)"
 # check arguments
 check_arg "$1" "$args" "no album directory specified"
 
-cameras="analog eos hugin ipad iphone other"
+cameras="analog eos hugin ipad iphone other sanja"
 src="${1#*/}"
 
 for i in $cameras jpg jpg.low jpg.selections; do
@@ -49,6 +49,12 @@ for i in 1 2 3 4 5 0; do
 
 	rename.sh jpg/$i/$src/ date
 	rename.sh jpg.low/$i/$src/ date
+	for v in "video/$src/"*"_r$i".*; do
+		[ -f "$v" ] || continue
+		f="`basename $v | sed -e 's/-//' -e 's/-//' -e 's/_//'`"
+		ln -rs "$v" "jpg/$i/$src/$f"
+		ln -rs "$v" "jpg.low/$i/$src/$f"
+	done
 done
 rmdir --ignore-fail-on-non-empty jpg*/*/$src/
 
