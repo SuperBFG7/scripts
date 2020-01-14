@@ -21,3 +21,10 @@ jhead -autorot "$DIR/"*.jpg 2> /dev/null
 
 # remove executable flag
 chmod a-x "$DIR/"*.{cr2,jpg} 2> /dev/null
+
+# set exif time to file modification time for files without exif header
+for i in "$DIR/"*.jpg; do
+	if [ -z "`jhead "$i" | grep 'Date/Time'`" ]; then
+		jhead -mkexif -dsft "$i"
+	fi
+done

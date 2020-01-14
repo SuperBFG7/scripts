@@ -51,7 +51,7 @@ for i in 1 2 3 4 5 0; do
 	rename.sh jpg.low/$i/$src/ date
 	for v in "video/$src/"*"_r$i".*; do
 		[ -f "$v" ] || continue
-		f="`basename $v | sed -e 's/-//' -e 's/-//' -e 's/_//'`"
+		f="`basename $v | sed -e 's/-//' -e 's/-//' -e 's/_//' -e 's/_/00_/'`"
 		ln -rs "$v" "jpg/$i/$src/$f"
 		ln -rs "$v" "jpg.low/$i/$src/$f"
 	done
