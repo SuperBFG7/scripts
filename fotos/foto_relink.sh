@@ -38,10 +38,12 @@ for i in 1 2 3 4 5 0; do
 			ln -rs "$c/$src/jpg.low/$f" "jpg.low/$i/$src/${c}_$f"
 		done
 
+		[ "$c" = "analog" ] && continue
 		[ "$c" = "eos" ] && continue
 		for j in "$c/$src/jpg.low/"*"_r$i"*.jpg; do
 			[ -f "$j" ] || continue
 			f="`basename $j`"
+			[ -f "jpg.low/$i/$src/${c}_$f" ] && continue
 			ln -rs "$c/$src/jpg.low/$f" "jpg.low/$i/$src/${c}_$f"
 			ln -rs "$c/$src/${f%_r*.jpg}.jpg" "jpg/$i/$src/${c}_$f"
 		done
