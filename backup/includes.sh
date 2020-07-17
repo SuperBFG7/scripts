@@ -7,7 +7,7 @@ PI="/mnt/pi/data"
 EXTERNAL="/mnt/external"
 SECONDARY="/mnt/secondary"
 BACKUP="/mnt/backup"
-NAS="pi3:/data"
+NAS="pi4:/data"
 SERVER="despite:/home/daniel/backup"
 
 SOURCES="$DATA $PI $NAS $EXTERNAL $SECONDARY"
