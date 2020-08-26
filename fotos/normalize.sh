@@ -17,6 +17,7 @@ rename IMG img "$DIR/"*
 rename CR2 cr2 "$DIR/"*
 rename JPG jpg "$DIR/"*
 rename MOV mov "$DIR/"*
+rename MP4 mp4 "$DIR/"*
 
 # autorotate images based on EXIF orientation flag
 echo "autorotate jpg files ..."
