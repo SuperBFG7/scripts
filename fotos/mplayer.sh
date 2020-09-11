@@ -21,6 +21,6 @@ while (( "$#" )); do
 		*) rot="" ;;
 	esac
 
-	mplayer ${args[@]} $rot "$f"
+	mplayer -use-filename-title ${args[@]} $rot "$f"
 done
 
