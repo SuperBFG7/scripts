@@ -33,6 +33,14 @@ else
 #	logger "spinning down harddrives"
 #	hdparm -y /dev/sd*
 
+	(
+		echo -n "setting audio device: "
+		wget -q -O - --header "Content-type: application/json" \
+			--post-data '{"jsonrpc":"2.0","method":"Settings.SetSettingValue", "params":{"setting":"audiooutput.audiodevice","value":"ALSA:null"},"id":1}' \
+			http://localhost:8080/jsonrpc
+	) | logger
+
+
 	logger "disabling mpd USB output"
 	mpc disable 1
 
