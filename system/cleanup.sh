@@ -1,9 +1,9 @@
 #!/bin/bash
 
-. `dirname "$0"`/includes.sh
+. "$(dirname "$0")/includes.sh"
 
 header "removing unused orphan packages"
-pacman -Rns $(/usr/bin/pacman -Qtdq)
+eval pacman -Rns "$(/usr/bin/pacman -Qtdq)"
 
 header "cleaning package cache: old versions"
 paccache -r

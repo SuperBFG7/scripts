@@ -1,25 +1,25 @@
 #!/bin/bash
 
-. `git rev-parse --show-toplevel`/includes.sh	#STRIP#
+. "$(git rev-parse --show-toplevel)/includes.sh"	#STRIP#
 
 # pause and wait for keypress
 function pause() {
 	echo "press <ENTER> to continue"
-	read
+	read -r
 }
 
 # print a header
 function header() {
-	if [ ! -z "$2" ]; then
+	if [ -n "$2" ]; then
 		pause
 	fi
 	echo "------------------------------------------------------------------------------"
-	echo " " $1
+	echo " $1"
 	echo "------------------------------------------------------------------------------"
 }
 
 function debug() {
-	if [ ! -z "$DEBUG" ]; then
-		echo "`date --rfc-3339=seconds` -- $@"
+	if [ -n "$DEBUG" ]; then
+		echo "$(date --rfc-3339=seconds) -- " "$@"
 	fi
 }

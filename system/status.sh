@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. `dirname "$0"`/includes.sh
+. "$(dirname "$0")/includes.sh"
 
 header "System Status"
 systemctl status --no-pager
