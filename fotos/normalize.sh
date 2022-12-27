@@ -15,7 +15,9 @@ echo "renaming files ..."
 rename DSC dsc "$DIR/"*
 rename IMG img "$DIR/"*
 rename CR2 cr2 "$DIR/"*
+rename HEIC heic "$DIR/"*
 rename JPG jpg "$DIR/"*
+rename PNG png "$DIR/"*
 rename MOV mov "$DIR/"*
 rename MP4 mp4 "$DIR/"*
 
@@ -24,7 +26,7 @@ echo "autorotate jpg files ..."
 jhead -autorot "$DIR/"*.jpg 2> /dev/null
 
 # remove executable flag
-chmod a-x "$DIR/"*.{cr2,jpg} 2> /dev/null
+chmod a-x "$DIR/"*.{cr2,jpg,tif,png} 2> /dev/null
 
 # set exif time to file modification time for files without exif header
 echo "create missing exif headers ..."
