@@ -2,24 +2,34 @@
 
 . `dirname "$0"`/includes.sh
 
-cmd="echo mv -iv"
+cmd="echo -n mv -iv"
+hint="echo -e"
 level="$1"
 action="$2"
 
 if [ -z "$level" ]; then
-	usage "level [action]"
-	echo "levels:"
-	echo " safe    = only consider files with exif timestamps"
-	echo " unsafe1 = only consider files missing exif timestamp and use modification date instead"
-	echo
-	echo "actions:"
-	echo " dry = do nothing, display suggested renames (default)"
-	echo " wet = perform the renames"
-	exit 0
+	level="all"
 fi
+
+case $level in
+	"all" | "safe" | "unsafe") ;;
+	*)
+		usage "level [action]"
+		echo "levels:"
+		echo " safe   = only consider files with exif timestamps"
+		echo " unsafe = only consider files missing exif timestamp and use modification date instead"
+		echo " all    = consider all files, safe and unsafe (default)"
+		echo
+		echo "actions:"
+		echo " dry = do nothing, display suggested renames (default)"
+		echo " wet = perform the renames"
+		exit 0
+		;;
+esac
 
 if [ "$action" = "dry" ]; then
 	cmd="mv -iv"
+	hint="true"
 fi
 
 for i in *.{mp4,mov}; do
@@ -43,11 +53,12 @@ for i in *.{mp4,mov}; do
 		continue
 	fi
 
-	if [ "$level" != "$type" ]; then
+	if [ "$level" != "all" -a "$level" != "$type" ]; then
 		echo "# skipping $i - wrong level"
 		continue
 	fi
 
 	$cmd "$i" "$timestamp.${i##*.}"
+	$hint "\t # $type"
 done
 
