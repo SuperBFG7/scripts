@@ -27,7 +27,7 @@ case $level in
 		;;
 esac
 
-if [ "$action" = "dry" ]; then
+if [ "$action" = "wet" ]; then
 	cmd="mv -iv"
 	hint="true"
 fi
