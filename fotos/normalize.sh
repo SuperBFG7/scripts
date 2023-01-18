@@ -36,3 +36,11 @@ for i in "$DIR/"*.jpg; do
 		exiftool -model="unknown" "$i"
 	fi
 done
+
+# compress TIFF images (lossless with ZIP compression)
+for i in "$DIR/"*.tif; do
+	if [ -z "$(exiftool $i | grep 'Compression' | grep 'Adobe Deflate')" ]; then
+		mv -iv "$i" "${i}_original"
+		convert -monitor -compress ZIP "${i}_original" "$i"
+	fi
+done
