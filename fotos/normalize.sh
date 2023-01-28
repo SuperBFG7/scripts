@@ -31,6 +31,7 @@ chmod a-x "$DIR/"*.{cr2,jpg,tif,png} 2> /dev/null
 # set exif time to file modification time for files without exif header
 echo "create missing exif headers ..."
 for i in "$DIR/"*.jpg; do
+	[ -f "$i" ] || exit
 	if [ -z "`jhead "$i" | grep 'Date/Time'`" ]; then
 		jhead -mkexif -dsft "$i"
 		exiftool -model="unknown" "$i"
@@ -39,6 +40,7 @@ done
 
 # compress TIFF images (lossless with ZIP compression)
 for i in "$DIR/"*.tif; do
+	[ -f "$i" ] || exit
 	if [ -z "$(exiftool $i | grep 'Compression' | grep 'Adobe Deflate')" ]; then
 		mv -iv "$i" "${i}_original"
 		convert -monitor -compress ZIP "${i}_original" "$i"
