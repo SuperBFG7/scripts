@@ -45,7 +45,10 @@ for i in 1 2 3 4 5 0; do
 			f="`basename $j`"
 			[ -f "jpg.low/$i/$src/${c}_$f" ] && continue
 			ln -rs "$c/$src/jpg.low/$f" "jpg.low/$i/$src/${c}_$f"
-			ln -rs "$c/$src/${f%_r*.jpg}.jpg" "jpg/$i/$src/${c}_$f"
+			ext="jpg"
+			o="$c/$src/${f%_r*.jpg}"
+			[ -f "$o.$ext" ] || ext="heic"
+			ln -rs "$o.$ext" "jpg/$i/$src/${c}_${f%.jpg}.$ext"
 		done
 	done
 
@@ -53,7 +56,7 @@ for i in 1 2 3 4 5 0; do
 	rename.sh jpg.low/$i/$src/ date
 	for v in "video/$src/"*"_r$i".*; do
 		[ -f "$v" ] || continue
-		f="`basename $v | sed -e 's/-//' -e 's/-//' -e 's/_//' -e 's/_/00_/'`"
+		f="`basename $v | sed -e 's/-//' -e 's/-//' -e 's/_//'`"
 		ln -rs "$v" "jpg/$i/$src/$f"
 		ln -rs "$v" "jpg.low/$i/$src/$f"
 	done
