@@ -12,3 +12,6 @@ paccache -r
 header "cleaning package cache: uninstalled packages"
 paccache -ruk0
 
+header "cleaning package cache: custom repo"
+paccache -c /home/packages/ -r -k 1
+
