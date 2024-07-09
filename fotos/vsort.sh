@@ -9,7 +9,7 @@ now_playing() {
 	exiftool "$i"  | grep -iE "^((file|image) size|duration)"
 }
 
-filter="(mp4|mov)"
+filter="(mp4|mov|avi)"
 
 if [ "$1" = "x" ]; then
 	vfilter="r[0-5]"
