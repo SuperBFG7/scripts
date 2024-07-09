@@ -87,7 +87,7 @@ encode() {
 			echo "copying  MP3  file to $mp3file"
 			cp -aL "$srcfile" "$mp3file"
 		;;
-		"jpg" | "pdf")
+		"jpg" | "pdf" | "png")
 			echo "skipping file $srcfile (not music)"
 		;;
 		*)
