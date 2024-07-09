@@ -15,3 +15,6 @@ paccache -ruk0
 header "cleaning package cache: custom repo"
 paccache -c /home/packages/ -r -k 1
 
+header "cleaning aurutils cache"
+su - build -c "find /home/build/.cache/aurutils/sync -name .git -execdir git clean -xf \;"
+
