@@ -48,6 +48,7 @@ for i in 1 2 3 4 5 0; do
 			ext="jpg"
 			o="$c/$src/${f%_r*.jpg}"
 			[ -f "$o.$ext" ] || ext="heic"
+			[ -f "$o.$ext" ] || ext="png"
 			ln -rs "$o.$ext" "jpg/$i/$src/${c}_${f%.jpg}.$ext"
 		done
 	done
