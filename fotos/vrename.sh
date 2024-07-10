@@ -21,9 +21,10 @@ case $level in
 		echo " all    = consider all files, safe and unsafe (default)"
 		echo
 		echo "actions:"
-		echo " dry  = do nothing, display suggested renames (default)"
-		echo " wet  = perform the renames"
-		echo " exif = set the EXIF CreateDate based on the filename"
+		echo " dry   = do nothing, display suggested renames (default)"
+		echo " wet   = perform the renames"
+		echo " exif  = set the EXIF CreateDate based on the filename"
+		echo " mtime = set the file modification time based on the filename"
 		exit 0
 		;;
 esac
@@ -69,6 +70,14 @@ for i in *.{mp4,mov,avi}; do
 	if [ "$action" = "exif" ]; then
 		echo "setting EXIF CreateDate based on filename for ${i}"
 		exiftool -api QuickTimeUTC "-CreateDate<Filename" "${i}"
+		continue
+	fi
+
+	if [ "$action" = "mtime" ]; then
+		echo "setting file modification time based on filename for ${i}"
+		timestamp=$(echo ${i} | sed -e "s/_\([0-9][0-9]\)\([0-9][0-9]\)\([0-9][0-9]\).*/ \1:\2:\3/")
+		touch -d "${timestamp}" "${i}"
+		continue
 	fi
 
 	$cmd "$i" "$timestamp.${i##*.}"
