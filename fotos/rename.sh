@@ -14,10 +14,10 @@ MODE="$2"
 
 ls "$DIR/"*.{jpg,jpeg,heic,png,JPG,JPEG,HEIC,PNG} 2> /dev/null | while read img; do
 	if [ -z "$MODE" ]; then
-		name=`jhead "$img" | grep Comment | sed -e 's/.*: //'`
+		name=`jhead -se "$img" | grep Comment | sed -e 's/.*: //'`
 	else
-#		name=`jhead "$img" | grep Date | sed -e 's/.*: //' -e 's/:/-/1' -e 's/:/-/1' -e 's/:/./g'`"_`basename $img`"
-		name=`jhead "$img" | grep "Date/Time" | sed -e 's/.*: //' -e 's/://g' -e 's/ //g'`
+#		name=`jhead -se "$img" | grep Date | sed -e 's/.*: //' -e 's/:/-/1' -e 's/:/-/1' -e 's/:/./g'`"_`basename $img`"
+		name=`jhead -se "$img" | grep "Date/Time" | sed -e 's/.*: //' -e 's/://g' -e 's/ //g'`
 		[ -n "$name" ] || name=`exiftool "$img" | grep "Date/Time Original" | grep -v "+" | sed -e 's/.*: //' -e 's/://g' -e 's/ //g'`
 		name="${name}_`basename $img`"
 	fi

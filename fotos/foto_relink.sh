@@ -7,7 +7,8 @@ args="albumdir (example: eos/2017-01-01_foo)"
 # check arguments
 check_arg "$1" "$args" "no album directory specified"
 
-cameras="analog eos hugin ipad iphone other sanja"
+cameras="analog eos gimp hugin ipad iphone nikon other sanja"
+#art/ scans/
 src="${1#*/}"
 
 for i in $cameras jpg jpg.low jpg.selections; do
@@ -49,6 +50,8 @@ for i in 1 2 3 4 5 0; do
 			o="$c/$src/${f%_r*.jpg}"
 			[ -f "$o.$ext" ] || ext="heic"
 			[ -f "$o.$ext" ] || ext="png"
+			[ -f "$o.$ext" ] || ext="webp"
+			[ -f "$o.$ext" ] || die "Cannot find HQ version of $j"
 			ln -rs "$o.$ext" "jpg/$i/$src/${c}_${f%.jpg}.$ext"
 		done
 	done
